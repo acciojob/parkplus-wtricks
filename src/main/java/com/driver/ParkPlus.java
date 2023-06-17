@@ -9,7 +9,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 public class ParkPlus {
 
-	public static void main(String[] args) {add
+	public static void main(String[] args) {
 		SpringApplication.run(ParkPlus.class, args);
 	}
 
