@@ -8,16 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,4 +20,38 @@ public class ParkingLot {
 
     @OneToMany(mappedBy = "parkingLot")
     private List<Spot> spotList;
+
+    public ParkingLot() {}
+
+    public String getAddress() {
+        return address;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Spot> getSpotList() {
+        return spotList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSpotList(List<Spot> spotList) {
+        this.spotList = spotList;
+    }
 }

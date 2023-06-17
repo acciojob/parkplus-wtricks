@@ -8,16 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,4 +26,46 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "spot_id")
     private Spot spot;
+
+    public Reservation() {}
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public void setSpot(Spot spot) {
+        this.spot = spot;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNumberOfHours(int numberOfHours) {
+        this.numberOfHours = numberOfHours;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Spot getSpot() {
+        return spot;
+    }
+
+    public int getNumberOfHours() {
+        return numberOfHours;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
 }

@@ -20,10 +20,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public ParkingLot addParkingLot(String name, String address) {
-        ParkingLot parkingLot = ParkingLot.builder()
-                                .name(name)
-                                .address(address)
-                                .build();
+    ParkingLot parkingLot = new ParkingLot();
+    parkingLot.setName(name);
+    parkingLot.setAddress(address);
+        // ParkingLot parkingLot = ParkingLot.builder()
+        //                         .name(name)
+        //                         .address(address)
+        //                         .build();
 
         return parkingLotRepository1.save(parkingLot);
     }   
@@ -42,12 +45,17 @@ public class ParkingLotServiceImpl implements ParkingLotService {
             type = SpotType.TWO_WHEELER;
         } 
 
-        Spot spot = Spot.builder()
-                    .parkingLot(parkingLot.get())
-                    .spotType(type)
-                    .pricePerHour(pricePerHour)
-                    .occupied(false)
-                    .build();
+        Spot spot = new Spot();
+        spot.setOccupied(false);
+        spot.setParkingLot(parkingLot.get());
+        spot.setPricePerHour(parkingLotId);
+        spot.setSpotType(type);
+        // Spot spot = Spot.builder()
+        //             .parkingLot(parkingLot.get())
+        //             .spotType(type)
+        //             .pricePerHour(pricePerHour)
+        //             .occupied(false)
+        //             .build();
 
         return spotRepository1.save(spot);
     }

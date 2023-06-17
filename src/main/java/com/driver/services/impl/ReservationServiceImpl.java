@@ -49,12 +49,16 @@ public class ReservationServiceImpl implements ReservationService {
         
         spot.setOccupied(true);
         spotRepository3.save(spot);
-
-        Reservation reservation = Reservation.builder()
-                                .numberOfHours(timeInHours)
-                                .user(user)
-                                .spot(spot)
-                                .build();
+        
+        Reservation reservation = new Reservation();
+        reservation.setNumberOfHours(timeInHours);
+        reservation.setSpot(spot);
+        reservation.setUser(user);
+        // Reservation reservation = Reservation.builder()
+        //                         .numberOfHours(timeInHours)
+        //                         .user(user)
+        //                         .spot(spot)
+        //                         .build();
 
         return reservationRepository3.save(reservation);
     }

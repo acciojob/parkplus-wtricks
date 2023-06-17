@@ -44,11 +44,15 @@ public class PaymentServiceImpl implements PaymentService {
             throw new Exception("Insufficient Amount");
         }
 
-        Payment payment = Payment.builder()
-                        .paymentComplete(true)
-                        .paymentMode(pMode)
-                        .reservation(res)
-                        .build();
+        Payment payment = new Payment();
+        payment.setPaymentComplete(false);
+        payment.setPaymentMode(pMode);
+        payment.setReservation(res);
+        // Payment payment = Payment.builder()
+        //                 .paymentComplete(true)
+        //                 .paymentMode(pMode)
+        //                 .reservation(res)
+        //                 .build();
 
         return paymentRepository2.save(payment);
     }
