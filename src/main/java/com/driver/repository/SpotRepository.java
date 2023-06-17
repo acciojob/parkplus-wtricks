@@ -9,4 +9,7 @@ import com.driver.model.SpotType;
 @Repository
 public interface SpotRepository extends JpaRepository<Spot, Integer>{
     Spot findFirstBySpotTypeAndOccupiedAndParkingLotIdOrderByPricePerHourAsc(SpotType spotType, boolean occupied, int parkingLotId);
+
+    Spot findFirstByOccupiedAndParkingLotIdAndNumberOfWheelsGreaterThanEqualOrderByPricePerHourAsc(
+        boolean occupied, int parkingLotId, int numberOfWheels);
 }

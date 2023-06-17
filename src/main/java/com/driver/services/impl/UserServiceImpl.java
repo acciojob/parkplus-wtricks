@@ -21,9 +21,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updatePassword(Integer userId, String password) {
         Optional<User> users = userRepository4.findById(userId);
-        if (users.isEmpty()) {
-            return null;
-        }
+        // if (users.isEmpty()) {
+        //     return null;
+        // }
 
         return users.get();
     }

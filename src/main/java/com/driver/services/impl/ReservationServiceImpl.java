@@ -32,16 +32,10 @@ public class ReservationServiceImpl implements ReservationService {
             throw new Exception("Cannot make reservation");
         }
 
-        SpotType type = SpotType.OTHERS;
-        if (numberOfWheels == 4) {
-            type = SpotType.FOUR_WHEELER;
-        } else if (numberOfWheels == 2) {
-            type = SpotType.TWO_WHEELER;
-        } 
-
         User user = users.get();
         Spot spot = spotRepository3
-            .findFirstBySpotTypeAndOccupiedAndParkingLotIdOrderByPricePerHourAsc(type, false, parkingLotId);
+            .findFirstByOccupiedAndParkingLotIdAndNumberOfWheelsGreaterThanEqualOrderByPricePerHourAsc(false, parkingLotId, numberOfWheels);
+        
         
         if (spot == null) {
             throw new Exception("Cannot make reservation");
@@ -54,6 +48,7 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setNumberOfHours(timeInHours);
         reservation.setSpot(spot);
         reservation.setUser(user);
+
         // Reservation reservation = Reservation.builder()
         //                         .numberOfHours(timeInHours)
         //                         .user(user)

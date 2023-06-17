@@ -21,10 +21,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment pay(Integer reservationId, int amountSent, String mode) throws Exception {
         Optional<Reservation> reservations = reservationRepository2.findById(reservationId);
-        if (reservations.isEmpty()) {
-            throw new Exception("No Reservation is exist.");
-        }
-
+       
         Reservation res = reservations.get();
         PaymentMode pMode = null;
         if (mode.equalsIgnoreCase("card")) {

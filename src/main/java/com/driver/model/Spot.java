@@ -21,6 +21,8 @@ public class Spot {
     @Enumerated(EnumType.STRING)
     private SpotType spotType;
 
+    private int numberOfWheels;
+
     private int pricePerHour;
 
     private boolean occupied;
@@ -80,5 +82,13 @@ public class Spot {
 
     public void setSpotType(SpotType spotType) {
         this.spotType = spotType;
+    }
+
+    public int getNumberOfWheels() {
+        return numberOfWheels;
+    }
+
+    public void setNumberOfWheels(int numberOfWheels) {
+        this.numberOfWheels = numberOfWheels;
     }
 }
