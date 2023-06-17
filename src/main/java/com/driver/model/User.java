@@ -56,4 +56,12 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
 }
