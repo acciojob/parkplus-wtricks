@@ -1,37 +1,41 @@
 package com.driver.model;
 
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="payment")
+@Table(name = "PAYMENTS")
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    private boolean paymentCompleted;
+    private Boolean paymentCompleted;
 
-    @Enumerated(value=EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private PaymentMode paymentMode;
 
-    @OneToOne
-    @JoinColumn
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
     private Reservation reservation;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public boolean isPaymentCompleted() {
+    public Boolean isPaymentCompleted() {
+        return paymentCompleted;
+    }
+    public Boolean getPaymentCompleted() {
         return paymentCompleted;
     }
 
-    public void setPaymentCompleted(boolean paymentCompleted) {
+    public void setPaymentCompleted(Boolean paymentCompleted) {
         this.paymentCompleted = paymentCompleted;
     }
 

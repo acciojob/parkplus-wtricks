@@ -1,16 +1,18 @@
 package com.driver.model;
 
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="reservation")
+@Table(name = "RESERVATIONS")
 public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    private int numberOfHours;
+    private Integer numberOfHours;
 
     @ManyToOne
     @JoinColumn
@@ -20,22 +22,23 @@ public class Reservation {
     @JoinColumn
     private Spot spot;
 
-    @OneToOne(mappedBy = "reservation",cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn
     private Payment payment;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getNumberOfHours() {
+    public Integer getNumberOfHours() {
         return numberOfHours;
     }
 
-    public void setNumberOfHours(int numberOfHours) {
+    public void setNumberOfHours(Integer numberOfHours) {
         this.numberOfHours = numberOfHours;
     }
 

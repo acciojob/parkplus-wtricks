@@ -1,28 +1,31 @@
 package com.driver.model;
 
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="parkingLot")
+@Table(name = "PARKING_LOTS")
 public class ParkingLot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private String name;
+
     private String address;
 
-    @OneToMany(mappedBy = "parkingLot",cascade = CascadeType.ALL)
-    private List<Spot> spotList=new ArrayList<>();
+    @OneToMany(mappedBy = "parkingLot", cascade = CascadeType.ALL)
+    private List<Spot> spotList = new ArrayList<>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

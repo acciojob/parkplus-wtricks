@@ -1,35 +1,38 @@
 package com.driver.model;
 
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="spot")
+@Table(name = "SPOTS")
 public class Spot {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private SpotType spotType;
 
-    private int pricePerHour;
+    private Integer pricePerHour;
+
     private Boolean occupied;
 
     @ManyToOne
     @JoinColumn
     private ParkingLot parkingLot;
 
-    @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
-    private List<Reservation> reservationList=new ArrayList<>();
+    @OneToMany(mappedBy = "spot", cascade = CascadeType.ALL)
+    private List<Reservation> reservationList = new ArrayList<>();
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -41,11 +44,11 @@ public class Spot {
         this.spotType = spotType;
     }
 
-    public int getPricePerHour() {
+    public Integer getPricePerHour() {
         return pricePerHour;
     }
 
-    public void setPricePerHour(int pricePerHour) {
+    public void setPricePerHour(Integer pricePerHour) {
         this.pricePerHour = pricePerHour;
     }
 

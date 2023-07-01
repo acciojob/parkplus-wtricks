@@ -9,9 +9,9 @@ import com.driver.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.Comparator;
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -25,7 +25,9 @@ public class ReservationServiceImpl implements ReservationService {
     ParkingLotRepository parkingLotRepository3;
     @Override
     public Reservation reserveSpot(Integer userId, Integer parkingLotId, Integer timeInHours, Integer numberOfWheels) throws Exception {
-
+    //Reserve a spot in the given parkingLot such that the total price is minimum. Note that the price per hour for each spot is different
+    //Note that the vehicle can only be parked in a spot having a type equal to or larger than given vehicle
+    //If parkingLot is not found, user is not found, or no spot is available, throw "Cannot make reservation" exception.
         try {
             ParkingLot parkingLot = parkingLotRepository3.findById(parkingLotId).get();
             User user = userRepository3.findById(userId).get();
