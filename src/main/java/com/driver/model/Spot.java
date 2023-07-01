@@ -1,94 +1,75 @@
 package com.driver.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
 @Entity
+@Table(name="spot")
 public class Spot {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Enumerated(EnumType.STRING)
     private SpotType spotType;
 
-    private int numberOfWheels;
-
     private int pricePerHour;
-
-    private boolean occupied;
-
-    @OneToMany(mappedBy = "user")
-    private List<Reservation> reservationList;
+    private Boolean occupied;
 
     @ManyToOne
-    @JoinColumn(name = "parkinglot_id")
+    @JoinColumn
     private ParkingLot parkingLot;
 
-    public Spot() {}
-
-    public SpotType getSpotType() {
-        return spotType;
-    }
-
-    public List<Reservation> getReservationList() {
-        return reservationList;
-    }
-
-    public int getPricePerHour() {
-        return pricePerHour;
-    }
-
-    public ParkingLot getParkingLot() {
-        return parkingLot;
-    }
+    @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)
+    private List<Reservation> reservationList=new ArrayList<>();
 
     public int getId() {
         return id;
-    }
-
-    public boolean getOccupied() {
-        return this.occupied;
-    }
-
-    public void setReservationList(List<Reservation> reservationList) {
-        this.reservationList = reservationList;
-    }
-
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setOccupied(boolean occupied) {
-        this.occupied = occupied;
-    }
-
-    public void setPricePerHour(int pricePerHour) {
-        this.pricePerHour = pricePerHour;
+    public SpotType getSpotType() {
+        return spotType;
     }
 
     public void setSpotType(SpotType spotType) {
         this.spotType = spotType;
     }
 
-    public int getNumberOfWheels() {
-        return numberOfWheels;
+    public int getPricePerHour() {
+        return pricePerHour;
     }
 
-    public void setNumberOfWheels(int numberOfWheels) {
-        this.numberOfWheels = numberOfWheels;
+    public void setPricePerHour(int pricePerHour) {
+        this.pricePerHour = pricePerHour;
+    }
+
+    public Boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(Boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+    }
+
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
     }
 }

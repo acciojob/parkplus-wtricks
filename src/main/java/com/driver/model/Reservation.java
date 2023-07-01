@@ -1,71 +1,65 @@
 package com.driver.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name="reservation")
 public class Reservation {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int numberOfHours;
 
-    @OneToOne(mappedBy = "reservation")
-    private Payment payment;
-
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "spot_id")
+    @JoinColumn
     private Spot spot;
 
-    public Reservation() {}
+    @OneToOne(mappedBy = "reservation",cascade = CascadeType.ALL)
+    private Payment payment;
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public void setSpot(Spot spot) {
-        this.spot = spot;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNumberOfHours(int numberOfHours) {
-        this.numberOfHours = numberOfHours;
+    public int getNumberOfHours() {
+        return numberOfHours;
     }
 
-    public int getId() {
-        return id;
+    public void setNumberOfHours(int numberOfHours) {
+        this.numberOfHours = numberOfHours;
     }
 
     public User getUser() {
         return user;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Spot getSpot() {
         return spot;
     }
 
-    public int getNumberOfHours() {
-        return numberOfHours;
+    public void setSpot(Spot spot) {
+        this.spot = spot;
     }
 
     public Payment getPayment() {
         return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }
